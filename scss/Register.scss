@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+.body_register{
+   
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .containerRegister{
+        width: 30vw;
+        height: 60vh;
+
+        .container_img{
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button{
+            margin-top: 20px;
+        }
+    }
+
+}
+
