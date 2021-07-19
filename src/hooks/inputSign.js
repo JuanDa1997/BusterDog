@@ -1,10 +1,8 @@
 import { useState } from 'react'
-
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 //importaciones necesarias del firebase
+import { fire } from '../../db/firebase';
 import 'firebase/auth';
 
 export const useHandleSubmit = () =>{
@@ -12,7 +10,14 @@ export const useHandleSubmit = () =>{
     //leer estado del input
     const [Email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
+    const [emailError, setEmailError] = useState('');
+    
 
+    const showErrrs = () =>{
+        return{
+            emailError
+        }
+    }
 
     const handleInputChange = (e) => {
         
@@ -27,73 +32,56 @@ export const useHandleSubmit = () =>{
         }
     }
 
-    //evaluar email con expresión regular (regex)
-    const validateEmail = () =>{
-        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(Email);
-    }
 
-    const validatePassword = () =>{
+    const verifyUser = async() =>{
+       // validarDatos();
+       const auth = fire.auth();
 
-        if (Password.length === 0) {
-            return console.log('The password must not be empty')
+        await auth
+            .signInWithEmailAndPassword(Email,Password)
+            .then(userCredention =>{
+                console.log('Sign in')
+            })
+            .catch(err =>{
+                switch(err.code){
+                    case "auth/invalid-email":
+                        return  setEmailError(err.message)
+                        
+                    case "auth/user-disable": 
+                        return  setEmailError(err.message)
 
-        }
-     
-        if(Password.length < 8){
-            return console.log('The password must be greater than 8 characters')
-        } 
+                    case "auth/user-not-found":
+                        return  setEmailError(err.message)
 
-        if(Password.length > 15){
-            return console.log('The password must not exceed 15 characters')
-        } 
+                    case "auth/wrong-password":
+                        return  setEmailError(err.message)
+                        
+                    case "auth/internal-error":
+                        return  setEmailError(err.message)
 
-        
-        
-    }
+                    case "auth/invalid-password":
+                        return  setEmailError(err.message)
 
-    const validarDatos = () =>{
-
-        
-        if(validateEmail()){
-            console.log('entro')
-          
-        }else{
-            return toast('Invalid Email!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                type:'warning'
+                    default: 
+                        return setEmailError(err.message)
+                }
             });
-        }
+        
+        return true;
 
+   
+            
     }
+    
 
 
     //al boton le llega la info del input
     //y lo manda a la base de datos
-    const handleSubmit = () =>{
-
-        // validarDatos();
-        validatePassword();
-
-
-        // const auth = fire.auth();
-
-        // auth
-        //     .createUserWithEmailAndPassword(Email,Password)
-        //     .then(userCredention =>{
-        //         console.log('Sing Up')
-        //     });
-         
-    }
+   
 
     return{
-        handleSubmit,
-        handleInputChange
+        verifyUser,
+        handleInputChange,
+        showErrrs
     }
 }

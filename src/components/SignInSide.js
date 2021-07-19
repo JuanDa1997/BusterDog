@@ -19,13 +19,21 @@ import {Link} from 'react-router-dom';
 
 
 
-
-
 export const SignInSide = () => {
+
+
   //importar archivos
   const classes = useStyles();
-  const {handleSubmit, handleInputChange} = useHandleSubmit();
+  const {verifyUser, handleInputChange,showErrrs} = useHandleSubmit();
+
+  const {emailError} = showErrrs();
  
+  const handleSubmit = () =>{
+    document.getElementById('errorEmail').style.display="block"
+   
+    verifyUser();
+  }
+
   return (
     <>
       <ToastContainer/>
@@ -52,8 +60,6 @@ export const SignInSide = () => {
                     autoComplete="email"
                     autoFocus
                     onChange={handleInputChange}
-                    
-                    
                   />
                   <TextField
                     variant="outlined"
@@ -67,12 +73,8 @@ export const SignInSide = () => {
                     autoComplete="current-password"
                     onChange={handleInputChange}
                   />
-                  <FormControlLabel
-                    control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
-                    />
+                  <p className="errorMsg" id="errorEmail" style={{color:'red', display:'none'}}>{emailError}</p>
                   <Button
-                    // type="submit"
                     fullWidth
                     variant="contained"
                     color="primary"

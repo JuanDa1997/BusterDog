@@ -11,7 +11,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route path="/register" exact>
-            <Register />
+            <Register value={""}/>
           </Route>
 
           <Route path="/">

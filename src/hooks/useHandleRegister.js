@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+//importaciones necesarias del firebase
+import {fire} from '../../db/firebase'
+import 'firebase/auth';
 
 
-export const useHandleRegister = () => {
+export const useHandleRegister = ({value = ""}) => {
     //leer estado del input
-    const [Email, setEmail] = useState('');
-    const [Password, setPassword] = useState('');
-    const [Password2, setPassword2] = useState('');
+    const [Email, setEmail] = useState(value);
+    const [Password, setPassword] = useState(value);
+    const [Password2, setPassword2] = useState(value);
 
     
     //los datos que entran del input
@@ -52,25 +55,43 @@ export const useHandleRegister = () => {
         return true;
     }
 
+    const addUser = async() =>{
+      
+        const auth = fire.auth();
+        await auth
+                .createUserWithEmailAndPassword(Email,Password)
+                .then(userCredention =>{
+                    toast('Account created successfully!', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        type:'success'
+                    }); 
+                });
+        document.getElementById('elboton').style.backgroundColor='';
+        setEmail(value)
+        setPassword(value)
+        setPassword2(value)
+        setTimeout(() => {
+            window.location.href="http://localhost:3000/"
+        }, 3000);
+        
+        
+    }
 
     const validarDatos = () =>{
 
         if(validateEmail() && validatePassword()===true){
-            toast('Acoount created successfully!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                type:'success'
-            });
-          
+           
+            return true
         }
         
         if(validateEmail() === false){
-            toast('Invalid Email!', {
+            return toast('Invalid Email!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -81,12 +102,14 @@ export const useHandleRegister = () => {
                 type:'warning'
             });
         }
-
+        
+        return false
     }
    
     return{
         handleInputChange,
         validarDatos,
-        validatePassword
+        validatePassword,
+        addUser
     }
 }
