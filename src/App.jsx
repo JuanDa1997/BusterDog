@@ -1,8 +1,30 @@
 import { SignInSide } from "./components/SignInSide";
 import { BrowserRouter, Switch, Route,} from 'react-router-dom';
 import { Register } from './components/Register';
+import { InitSection } from './components/user_section/InitSection';
+import { useEffect, useState } from "react";
+import { fire } from '../db/firebase';
+import 'firebase/auth';
 
 const App = () => {
+  const [user, setUser] = useState('');
+
+  const authListener = () => {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user)
+        setUser(user);
+      } else {
+        setUser("");
+      }
+    });
+  };
+
+  useEffect(() => {
+    authListener();
+  },[]);
+
+
   return (
 
     // esta es la manera correcta de renderizar componentes
@@ -15,8 +37,14 @@ const App = () => {
           </Route>
 
           <Route path="/">
-            <SignInSide />
-          </Route>
+            {user ? (
+
+              <InitSection />
+
+            ):(
+              <SignInSide />
+            )}
+          </Route>        
         </Switch>
     </BrowserRouter>
     </div>

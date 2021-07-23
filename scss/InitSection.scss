@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+
+font-face{
+    font-family: 'Comfortaa', cursive;
+    src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+}
+
+.body{
+    background-color: rgb(237, 243, 248);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+    .containerHeader{
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        flex-direction: column;
+        align-items: center;
+        width: 90vw;
+        height: 90vh;
+        margin-top: 30px;
+        border-radius: 2vw;
+
+        a{
+            img{
+                width: 44px;
+            }
+        }
+
+        nav{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 100%;
+            height: 10vh;
+
+            ul{
+                display: flex;
+                list-style: none;
+                justify-content:flex-start;
+                align-items: center;
+                margin: 0px 0px 0px;
+                padding: 0px 0px 0px 0px;
+                width: 100%;  
+            }
+        }
+
+        .container-title{
+            margin-top: 40px;
+            color: tomato;
+            font-weight: bold;
+        }
+
+        .container-title-principal{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 65px;
+            font-weight: bold;
+            p{
+                font-family: 'Comfortaa', cursive;
+                margin: 0px 0px 0px;
+                height: 10vh;
+            }
+
+        }
+    }
+
+    .containerBody{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);        
+        width: 90vw;
+        height: 90vh;
+        margin-top: 30px;
+        border-radius: 2vw;
+        
+
+        .row{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+    }
+
+    .containerForm{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);        
+        width: 90vw;
+        height: 100vh;
+        margin-top: 30px;
+        border-radius: 2vw;
+        justify-content: space-evenly;
+        h4{
+            font-family: 'Comfortaa', cursive;
+            font-size: 30px;
+        }
+
+        .line{
+            height: 0.3vh;
+            border-radius: 2vw;
+            width: 60vw;
+            background-color: whitesmoke;
+        }
+
+        .container{
+            width: 60vw;
+        }
+    }
+
+    .containerShoppingCart{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);        
+        width: 90vw;
+        height: 100vh;
+        margin-top: 30px;
+        border-radius: 2vw;
+    }
+}

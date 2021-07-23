@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
+font-face {
+  font-family: "Comfortaa", cursive;
+  src: url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
+}
+
+.body {
+  background-color: #edf3f8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.body .containerHeader {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  margin-top: 30px;
+  border-radius: 2vw;
+}
+.body .containerHeader a img {
+  width: 44px;
+}
+.body .containerHeader nav {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+}
+.body .containerHeader nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  width: 100%;
+}
+.body .containerHeader .container-title {
+  margin-top: 40px;
+  color: tomato;
+  font-weight: bold;
+}
+.body .containerHeader .container-title-principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 65px;
+  font-weight: bold;
+}
+.body .containerHeader .container-title-principal p {
+  font-family: "Comfortaa", cursive;
+  margin: 0px 0px 0px;
+  height: 10vh;
+}
+.body .containerBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 90vw;
+  height: 90vh;
+  margin-top: 30px;
+  border-radius: 2vw;
+}
+.body .containerBody .row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.body .containerForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  width: 90vw;
+  height: 100vh;
+  margin-top: 30px;
+  border-radius: 2vw;
+  justify-content: space-evenly;
+}
+.body .containerForm h4 {
+  font-family: "Comfortaa", cursive;
+  font-size: 30px;
+}
+.body .containerForm .line {
+  height: 0.3vh;
+  border-radius: 2vw;
+  width: 60vw;
+  background-color: whitesmoke;
+}
+.body .containerForm .container {
+  width: 60vw;
+}
+.body .containerShoppingCart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 90vw;
+  height: 100vh;
+  margin-top: 30px;
+  border-radius: 2vw;
+}
+
+/*# sourceMappingURL=InitSection.css.map */

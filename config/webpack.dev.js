@@ -6,7 +6,7 @@ const common = require("./webpack.common");
 const devConfig = {
     mode: "development",
     devServer:{
-        port: 3000,
+        port: 3001,
         historyApiFallback:true,
         contentBase: "../dist",
         open: "chrome",
