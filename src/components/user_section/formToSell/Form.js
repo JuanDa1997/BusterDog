@@ -1,6 +1,8 @@
 import {fire} from '../../../../db/firebase'
 import 'firebase/firestore'
 import { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+
 export const Form = () => {
     const db = fire.firestore();
     const [Nombre, setNombre] = useState('');
@@ -8,12 +10,14 @@ export const Form = () => {
     const [precioVenta, setprecioVenta] = useState('');
     const [Descripcion, setDescripcion] = useState('');
 
+   
+
     const addUser = (e) =>{
         e.preventDefault()
         const Value = e.target.name;
         const inputValue = e.target.value;
 
-        if (Value === 'title') {
+        if (Value === 'title') {            
             setNombre(inputValue)
         }
 
@@ -21,22 +25,84 @@ export const Form = () => {
             setCosto(inputValue)
         }
 
-        if (Value === 'salesPrice') {
+        if (Value === 'salePrice') {
             setprecioVenta(inputValue)
         }
 
         if (Value === 'description') {
             setDescripcion(inputValue)
         }
+
     }
 
-    const submit = () =>{
-        // console.log(Nombre, Costo, precioVenta, Descripcion)
+    const validateInfo = () =>{
+       
+        const num = isNaN(Costo) //false si es numero
+        const num2 = isNaN(precioVenta)
         
+        if (Nombre.length === 0) {
+            return <span>nombre no puede estar vacío</span> 
+        }
+
+        if (Costo.length === 0) {
+            
+            return <span>costo no puede estar vacío</span> 
+        }
+
+        if (num === true) {
+            return <span>costo debe ser numérico</span> 
+        }
+
+        if (precioVenta.length === 0) {
+            return <span>precio no puede estar vacío</span> 
+        }
+
+        if (num2 === true) {
+            return <span>precio debe ser numérico</span> 
+        }
+
+        if (Descripcion.length === 0) {
+            return <span>descripcion no puede estar vacío</span> 
+        }
+
+        return true
+    }
+    
+
+    const submit = async() =>{
+
+        document.getElementById('errorMsg').style.display="block";
+
+        if(validateInfo() === true) {
+
+            const posts ={
+                title:Nombre,
+                costo:Costo,
+                descripcion:Descripcion,
+                precioVenta
+                
+            }
+
+            await db.collection('posts')
+                    .add(posts)
+
+            toast('Item submited with successfully!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                type:'success'
+            }); 
+        }
     }
 
     return (
+        
         <div className="containerForm">
+            <ToastContainer /> 
             <h4>Here you can sell what you don't use!</h4>
             <div className="line"></div>
             <div className="container">
@@ -66,6 +132,7 @@ export const Form = () => {
                     <span className="input-group-text">Description</span>
                     <textarea className="form-control description" name="description" aria-label="With textarea" onChange={addUser}></textarea>
                 </div>
+                <span  id="errorMsg" style={{color:'red', display:'none'}}>{validateInfo()}</span>
 
                 <div className="d-grid gap-2 col-6 mx-auto" style={{marginTop:'40px'}}>
                     <button className="btn btn-primary" type="button" onClick={submit}>Submit</button>
