@@ -77,7 +77,7 @@ export const useHandleRegister = ({value = ""}) => {
         setPassword(value)
         setPassword2(value)
         setTimeout(() => {
-            window.location.href="http://localhost:3000/"
+            window.location.href="http://localhost:3001/"
         }, 3000);
         
         
