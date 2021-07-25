@@ -1,4 +1,5 @@
 import React from 'react'
+import imgDelete from '../../../../assets/delete.png'
 
 export const ShoppingCart = (props) => {
     return (
@@ -16,7 +17,20 @@ export const ShoppingCart = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                   
+                {/* {props.send.map((link) =>(
+
+                    <tr key={link.id}>
+                        <th scope="row">1</th>
+                        <td>{link.Institution_headquarter}</td>
+                        <td>{link.name}</td>
+                        <td>{link.acronym}</td>
+                        <td>{link.city}</td>
+                        <td>{link.Country}</td>
+                        <td>{link.Type}</td>
+                        <td className='urls'>{link.theLinks}</td>
+                        <td><img src={imgDelete} alt="delete" onClick={() => handleDelete(link.id)} /></td>
+                    </tr>
+                    ))} */}
 
                 </tbody>
             </table>

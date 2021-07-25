@@ -88,10 +88,8 @@ export const useHandleRegister = ({value = ""}) => {
         await auth
                 .createUserWithEmailAndPassword(Email,Password)
                 .then(userCredention =>{
-                    db.collection('users').doc().set({
+                    db.collection('users').doc("name").set({
                         userName,
-                        items:'',
-                        cantidad:''
                     }) //guardar en firestore
                     toast('Account created successfully!', {
                         position: "top-right",

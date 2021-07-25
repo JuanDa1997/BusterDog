@@ -9,12 +9,15 @@ const img1 = 'https://www.ciudaddemascotas.com/pub/media/catalog/product/cache/6
 export const Body = () => {
     const auth = fire.auth();
     const fs = fire.firestore();
-  
+    const id = fs.collection('users').doc('items').id
+    
     const setuPosts = (data) => {
         const Thetag = document.querySelector('.row')
         let html = '';
         let productos = [];
-        
+        const buy = []
+       
+
         data.forEach((doc,i) => {
             const post = doc.data();
             const{title,descripcion,precioVenta} = post
@@ -35,13 +38,25 @@ export const Body = () => {
 
         console.log('entrando')
 
-        window.myFunction = (e) => {
+        window.myFunction = async(e) => {
      
             const producSelected = productos[e]
-            
+            const btn = document.querySelectorAll('#zonas');
+
+          
             if (producSelected) {
+
+
+                const  length = btn.length;
+                console.log(btn,length)
                 
-                toast(`agregado al carrito el elemento: ${producSelected}!`, {
+                btn.forEach((e)=>{
+                    // e.style.backgroundColor='gray';
+                    e.style.backgroundColor='gray'
+                })
+                
+                buy.push(producSelected)                
+                await toast(`agregado al carrito el elemento: ${producSelected}!`, {
                     position: "top-right",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -51,8 +66,25 @@ export const Body = () => {
                     progress: undefined,
                     type:'success'
                 }); 
-            }
 
+                
+
+              
+                await setTimeout(() => {
+                    btn.forEach((e)=>{
+                        // e.style.backgroundColor='gray';
+                        e.style.backgroundColor=''
+                    })
+                }, 3000);
+                
+                
+                fs.collection('users').doc("items").set({
+                    items:buy
+                }) //guardar en firestore
+                
+            }
+           
+           
         
         };
         
@@ -77,6 +109,8 @@ export const Body = () => {
                 console.log('auth: sign out')
             }
         });
+
+       
     }
 
     
