@@ -11,7 +11,7 @@ import { useHandleRegister } from '../hooks/useHandleRegister';
 
 export const Register = ({value = ""}) => {
   const classes = useStyles();
-  const {handleInputChange, validatePassword, validarDatos,addUser} = useHandleRegister(value);
+  const {handleInputChange, validatePassword, validarDatos,addUser,validateName} = useHandleRegister(value);
 
   //para trabajar con los cambios de la contraseña
   //se maneja el evento del boton en el componente padre
@@ -21,16 +21,21 @@ export const Register = ({value = ""}) => {
     document.getElementById('warning').style.display="";
     document.getElementById('warning').style.color="Red";
 
-    if(validarDatos() === true){
+    document.getElementById('warning2').style.display="";
+    document.getElementById('warning2').style.color="Red";
+
+    if(validarDatos() === true ){
+
       document.getElementById('email').value='';
+      document.getElementById('userName').value='';
       document.getElementById('password').value='';
       document.getElementById('Confirm_password').value='';
       document.getElementById('elboton').style.backgroundColor='gray';
       addUser();  
       document.getElementById('elboton').style.backgroundColor='gray'; 
       document.getElementById('warning').style.display="none";
+      document.getElementById('warning2').style.display="none";
       
-       
     }
     
     
@@ -55,6 +60,18 @@ export const Register = ({value = ""}) => {
             label="Email Address"
             name="email"
             autoComplete="email"
+            autoFocus
+            onChange={handleInputChange}
+            
+          />
+            <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="userName"
+            label="User name"
+            name="userName"
             autoFocus
             onChange={handleInputChange}
             
@@ -85,7 +102,8 @@ export const Register = ({value = ""}) => {
             onChange={handleInputChange}
             autoFocus
           />
-          <span id="warning" style={{display:"none"}} >{validatePassword()}</span>
+          <span id="warning" style={{display:"none"}} >{validatePassword()}</span><br />
+          <span id="warning2" style={{display:"none"}} >{validateName()}</span>
 
           <Button
             fullWidth

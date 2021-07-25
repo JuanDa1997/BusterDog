@@ -113,5 +113,18 @@ font-face {
   border-radius: 2vw;
   height: 100vh;
 }
+.body .containerShoppingCart .showDataBase {
+  width: 90vw;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #212529;
+  border-radius: 0.5vw;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.body .containerShoppingCart .showDataBase table tr td img {
+  width: 1.5vw;
+}
 
 /*# sourceMappingURL=InitSection.css.map */

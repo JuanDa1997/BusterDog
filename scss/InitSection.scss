@@ -128,6 +128,35 @@ font-face{
         width: 90vw;
         margin-top: 30px;
         border-radius: 2vw;
-        height: 100vh
+        height: 100vh;
+
+        .showDataBase{
+            width: 90vw;
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            background-color:rgb(33, 37, 41);
+            border-radius: 0.5vw;
+            margin-top: 30px;
+            margin-bottom: 30px;
+           
+        
+         
+             
+            table{
+                tr{            
+                    td{
+                        img{
+                            
+                            width: 1.5vw;
+                        }
+                    }
+                }
+            }
+            
+            
+        
+            
+        }
     }
 }

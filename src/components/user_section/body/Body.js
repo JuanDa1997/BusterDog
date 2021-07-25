@@ -40,6 +40,7 @@ export const Body = () => {
             const producSelected = productos[e]
             
             if (producSelected) {
+                
                 toast(`agregado al carrito el elemento: ${producSelected}!`, {
                     position: "top-right",
                     autoClose: 3000,
