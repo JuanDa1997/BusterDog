@@ -4,6 +4,10 @@ font-face {
   src: url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .body {
   background-color: #edf3f8;
   display: flex;

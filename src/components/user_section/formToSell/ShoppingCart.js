@@ -73,7 +73,7 @@ export const ShoppingCart = (props) => {
     
 
     return (
-        <div className="containerShoppingCart">
+        <div className="containerShoppingCart" >
             <ToastContainer />
             <div className="showDataBase">
             <table className="table table-dark" >

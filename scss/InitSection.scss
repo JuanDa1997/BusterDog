@@ -5,6 +5,9 @@ font-face{
     src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 }
 
+html{
+    scroll-behavior: smooth;
+}
 .body{
     background-color: rgb(237, 243, 248);
     display: flex;
