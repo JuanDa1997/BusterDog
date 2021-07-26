@@ -106,10 +106,7 @@ export const Form = () => {
             <h4>Here you can sell what you don't use!</h4>
             <div className="line"></div>
             <div className="container">
-                <div className="input-group mb-3">
-                    <label className="input-group-text" htmlFor="inputGroupFile01">Upload</label>
-                    <input type="file" className="form-control" id="inputGroupFile01" />
-                </div>
+                
 
                 <div className="input-group mb-3">
                     <input type="text" name="title" onChange={addUser} className="form-control name" placeholder="Article name" aria-label="Recipient's username" aria-describedby="basic-addon2"/>
